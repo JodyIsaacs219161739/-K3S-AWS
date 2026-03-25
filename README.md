@@ -162,9 +162,9 @@ Add an entry for each node so they can resolve each other by hostname. Replace t
 
 ```sh
 sudo tee -a /etc/hosts <<EOF
-172.31.91.182  k3s-master-1
-172.31.93.90  k3s-master-2
-172.31.82.237  k3s-master-3
+172.31.90.214  k3s-master-1
+172.31.43.19  k3s-master-2
+172.31.35.200  k3s-master-3
 EOF
 ```
 
@@ -189,11 +189,11 @@ sudo mkdir -p /etc/rancher/k3s
 # Replace 1.2.3.4  with the public IP / Elastic IP of k3s-master-1
 sudo tee /etc/rancher/k3s/config.yaml <<EOF
 cluster-init: true
-node-ip: 10.0.1.10
-advertise-address: 10.0.1.10
+node-ip: 172.31.90.214
+advertise-address: 172.31.90.214
 tls-san:
-  - 10.0.1.10
-  - 1.2.3.4
+  - 172.31.90.214
+  - 18.212.62.240
   - k3s-master-1
 disable: [servicelb, traefik]
 EOF
@@ -238,13 +238,13 @@ sudo mkdir -p /etc/rancher/k3s
 
 # Example for k3s-master-2. Replace IPs and token with your values.
 sudo tee /etc/rancher/k3s/config.yaml <<EOF
-server: https://10.0.1.10:6443
-token: <token-from-master-1>
-node-ip: 10.0.1.11
-advertise-address: 10.0.1.11
+server: https://172.31.90.214:6443
+token: K10980c6516e803cfc5dd9b08241a1c8cda6ca6138e766fa6890a3f8e359287fc38::server:0f12a86b4d7f85b91aa544928ee64ed6
+node-ip: 172.31.35.200
+advertise-address: 172.31.35.200
 tls-san:
-  - 10.0.1.11
-  - 1.2.3.5
+  - 172.31.35.200
+  - 13.221.48.215
   - k3s-master-2
 disable: [servicelb, traefik]
 EOF
